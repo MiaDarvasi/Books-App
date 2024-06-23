@@ -1,11 +1,24 @@
 .app-header {
-  background-color: var(--clr1);
-  color: var(--clr1bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   padding: 1em;
+  background-color: var(--clr3);
+
+  color: var(--clr2);
+  font-weight: bold;
 }
 
-@media(max-width: 720px) {
-  .app-header {
-    color: var(--clr2bg);
-  }
+.app-header nav {
+  display: flex;
+  gap: 1rem;
+
+  color: var(--secondaryClr6);
 }
+
+.app-header nav a:hover {
+  color: var(--clr2);
+  transition: 0.5s;
+}
+

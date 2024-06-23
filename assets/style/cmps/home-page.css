@@ -1,0 +1,47 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondaryClr6);
+    border-radius: 3px;
+}
+
+.home h1 {
+    padding-inline: 1rem;
+    background-color: var(--clr1);
+    color: var(--secondaryClr6);
+    margin-block-start: 0.5rem;
+}
+
+.home h2 {
+    padding-block-end: 3rem;
+    margin-inline-start: 20%;
+}
+
+.home button {
+    width: 10rem;
+    align-self: flex-end;
+    color: var(--clr2);
+
+    font-size: 1.3rem;
+}
+
+.home button:hover {
+    background-color: var(--secondaryClr6);
+}
+
+.home button::after {
+    content: '➝';
+    position: relative;
+    top: 0.1rem;
+    left: -1rem;
+
+    color: transparent;
+    margin-inline-start: 1rem;
+
+    transition: 0.4s;
+}
+
+.home button:hover::after {
+    color: var(--clr2);
+    left: 0;
+}
