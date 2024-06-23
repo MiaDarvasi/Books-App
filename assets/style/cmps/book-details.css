@@ -8,9 +8,11 @@
 
 .book-details>*:nth-child(5),
 .book-details>*:nth-child(6),
-.book-details>*:nth-child(7) {
+.book-details>*:nth-child(7),
+.book-details>*:nth-child(8) {
     align-self: center;
     font-size: 1rem;
+    color: var(--clr1);
 }
 
 .book-details>*:nth-child(7) {

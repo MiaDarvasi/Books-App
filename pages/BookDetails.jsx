@@ -21,6 +21,7 @@ export function BookDetails({ onBack, bookId }) {
             <h3>Book ID: {book.id}</h3>
             <h4>Published: {book.publishedDate}</h4>
             <p>Price: {book.listPrice.amount}$</p>
+            <p>Pages: {book.pageCount}</p>
             <button onClick={onBack}>Back</button>
         </section>
     )

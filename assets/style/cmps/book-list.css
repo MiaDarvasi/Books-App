@@ -8,6 +8,8 @@
 }
 
 .book-list>* {
+    position: relative;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -23,10 +25,21 @@
 .book-list>* h1 {
     font-weight: bold;
     font-size: 2rem;
+
+    margin: 0;
 }
 
 .book-list>* h2 {
     font-size: 1rem;
+}
+
+.book-list>* p {
+    background-color: rgba(153, 166, 149, 0.5);
+}
+
+.book-list .book-status {
+    color: var(--clr2);
+    background-color: var(--secondaryClr6);
 }
 
 .book-list button {
@@ -45,4 +58,20 @@
     border: 5px solid var(--secondaryClr6);
     padding: 2px;
     background-color: var(--clr2);
+}
+
+.book-list .on-sale::after {
+    content: 'Sale !';
+    position: absolute;
+    top: 0.1rem;
+    right: -0.8rem;
+    transform: rotate(30deg);
+
+    width: 4rem;
+    height: 1.5rem;
+
+    background-color: var(--secondaryClr1);
+    color: var(--secondaryClr6);
+    line-height: 1.5rem;
+    font-family: 'Edu VIC WA NT Beginner', cursive;
 }

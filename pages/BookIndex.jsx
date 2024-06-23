@@ -13,7 +13,7 @@ export function BookIndex() {
     const [selectedBookId, setSelectedBookId] = useState(null)
 
     useEffect(() => {
-        console.log(books)
+        // console.log(books)
         loadBooks()
     }, [filterBy])
 

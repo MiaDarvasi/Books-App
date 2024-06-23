@@ -26,8 +26,8 @@ function query() {
             if (gFilterBy.price) {
                 books = books.filter(book => book.price >= gFilterBy.price)
             }
-            console.log(gFilterBy)
-            console.log(books)
+            // console.log(gFilterBy)
+            // console.log(books)
 
             return books
         })
