@@ -1,4 +1,10 @@
 .app-header {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+
+  width: 100%;
+
   display: flex;
   justify-content: space-between;
   align-items: center;

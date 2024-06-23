@@ -28,6 +28,10 @@ export function App() {
                 {page === 'about' && <About />}
                 {page === 'books' && <BookIndex />}
             </main>
+            <footer>
+                <h1>Book App</h1>
+                <p>All rights reserved 2024</p>
+            </footer>
         </section>
     )
 }

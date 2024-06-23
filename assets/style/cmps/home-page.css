@@ -1,8 +1,10 @@
 .home {
     display: flex;
     flex-direction: column;
+
     background-color: var(--secondaryClr6);
     border-radius: 3px;
+    margin-block-start: 5rem;
 }
 
 .home h1 {

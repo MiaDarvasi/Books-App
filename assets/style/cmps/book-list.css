@@ -5,6 +5,7 @@
 
     padding: 1rem;
     border-radius: 3px;
+    margin-block-end: 4rem;
 }
 
 .book-list>* {
@@ -71,7 +72,9 @@
     height: 1.5rem;
 
     background-color: var(--secondaryClr1);
-    color: var(--secondaryClr6);
+    border-radius: 3px;
+
+    color: whitesmoke;
     line-height: 1.5rem;
     font-family: 'Edu VIC WA NT Beginner', cursive;
 }
