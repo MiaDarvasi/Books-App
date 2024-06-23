@@ -9,6 +9,10 @@ export function App() {
 
     const [page, setPage] = useState('home')
 
+    function onGetStarted() {
+        setPage('books')
+    }
+
     return (
         <section className="app">
             <header className="app-header">
@@ -20,7 +24,7 @@ export function App() {
                 </nav>
             </header>
             <main className="container">
-                {page === 'home' && <Home />}
+                {page === 'home' && <Home onGetStarted={onGetStarted} />}
                 {page === 'about' && <About />}
                 {page === 'books' && <BookIndex />}
             </main>

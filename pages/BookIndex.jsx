@@ -1,7 +1,7 @@
 import { bookService } from '../services/book.service.js'
-import { BookList } from '../cmps/BookList.jsx'
 import { BookDetails } from '../pages/BookDetails.jsx'
-
+import { BookList } from '../cmps/BookList.jsx'
+import { BookFilter } from '../cmps/BookFilter.jsx'
 
 
 const { useEffect, useState } = React
@@ -9,7 +9,7 @@ const { useEffect, useState } = React
 export function BookIndex() {
 
     const [books, setBooks] = useState(null)
-    const [filterBy, setFilterBy] = useState(null)
+    const [filterBy, setFilterBy] = useState({})
     const [selectedBookId, setSelectedBookId] = useState(null)
 
     useEffect(() => {
@@ -39,6 +39,7 @@ export function BookIndex() {
 
     function onSetFilter(filterBy) {
         setFilterBy({ ...filterBy })
+        console.log('filterBy', filterBy)
     }
 
 
@@ -52,7 +53,7 @@ export function BookIndex() {
         <section className="book-index">
             {!selectedBookId &&
                 <React.Fragment>
-                    {/* <BookFilter filterBy={filterBy} onSetFilter={onSetFilter} /> */}
+                    <BookFilter filterBy={filterBy} onSetFilter={onSetFilter} />
                     <BookList
                         books={books}
                         onRemoveBook={onRemoveBook}
