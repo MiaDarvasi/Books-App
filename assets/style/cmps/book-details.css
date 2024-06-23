@@ -1,0 +1,28 @@
+.book-details {
+    display: flex;
+    flex-direction: column;
+
+    padding: 1rem;
+    background-color: var(--secondaryClr6);
+}
+
+.book-details>*:nth-child(5),
+.book-details>*:nth-child(6),
+.book-details>*:nth-child(7) {
+    align-self: center;
+    font-size: 1rem;
+}
+
+.book-details>*:nth-child(7) {
+    font-size: 1.2rem;
+}
+
+.book-details h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.book-details h2 {
+    margin: 0.3rem;
+    font-size: 1.3rem;
+}

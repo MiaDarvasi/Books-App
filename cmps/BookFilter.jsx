@@ -29,7 +29,7 @@ export function BookFilter({ filterBy, onSetFilter }) {
 
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
 
-        console.log('filterByToEdit', filterByToEdit)
+        // console.log('filterByToEdit', filterByToEdit)
 
     }
 

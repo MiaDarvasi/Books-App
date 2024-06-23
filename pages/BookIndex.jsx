@@ -13,6 +13,7 @@ export function BookIndex() {
     const [selectedBookId, setSelectedBookId] = useState(null)
 
     useEffect(() => {
+        console.log(books)
         loadBooks()
     }, [filterBy])
 
@@ -39,7 +40,7 @@ export function BookIndex() {
 
     function onSetFilter(filterBy) {
         setFilterBy({ ...filterBy })
-        console.log('filterBy', filterBy)
+        bookService.setFilterBy({...filterBy})
     }
 
 

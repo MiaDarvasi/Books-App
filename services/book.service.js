@@ -2,7 +2,7 @@ import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
 const BOOK_KEY = 'books'
-var gFilterBy = { txt: '', minSpeed: 0 }
+var gFilterBy = { title: '', price: 0 }
 _createBooks()
 
 export const bookService = {
@@ -19,13 +19,16 @@ export const bookService = {
 function query() {
     return storageService.query(BOOK_KEY)
         .then(books => {
-            if (gFilterBy.txt) {
-                const regex = new RegExp(gFilterBy.txt, 'i')
+            if (gFilterBy.title) {
+                const regex = new RegExp(gFilterBy.title, 'i')
                 books = books.filter(book => regex.test(book.title))
             }
-            if (gFilterBy.minSpeed) {
-                books = books.filter(book => book.maxSpeed >= gFilterBy.minSpeed)
+            if (gFilterBy.price) {
+                books = books.filter(book => book.price >= gFilterBy.price)
             }
+            console.log(gFilterBy)
+            console.log(books)
+
             return books
         })
 }
@@ -55,8 +58,8 @@ function getFilterBy() {
 }
 
 function setFilterBy(filterBy = {}) {
-    if (filterBy.txt !== undefined) gFilterBy.txt = filterBy.txt
-    if (filterBy.minSpeed !== undefined) gFilterBy.minSpeed = filterBy.minSpeed
+    if (filterBy.title !== undefined) gFilterBy.title = filterBy.title
+    if (filterBy.price !== undefined) gFilterBy.price = filterBy.price
     return gFilterBy
 }
 
@@ -71,18 +74,34 @@ function getNextBookId(bookId) {
 
 function _createBooks() {
     let books = utilService.loadFromStorage(BOOK_KEY)
+    const ctgs = ['Love', 'Fiction', 'Poetry', 'Computers', 'Religion']
+
     if (!books || !books.length) {
         books = []
-        books.push(_createBook('Harry Potter', {'amount': 109, 'currencyCode': 'EUR', isOnSale: false}))
-        books.push(_createBook('Oliver Twist', {'amount': 175, 'currencyCode': 'EUR', isOnSale: false}))
-        books.push(_createBook('World Atlas', {'amount': 89, 'currencyCode': 'EUR', isOnSale: false}))
-        books.push(_createBook('The Alchemist', {'amount': 243, 'currencyCode': 'EUR', isOnSale: false}))
-        utilService.saveToStorage(BOOK_KEY, books)
-    }
-}
 
-function _createBook(title = '', listPrice = {}) {
-    const book = getEmptyBook(title, listPrice)
-    book.id = utilService.makeId()
-    return book
+        for (let i = 0; i < 20; i++) {
+            const book = {
+                id: utilService.makeId(),
+                title: utilService.makeLorem(2),
+                subtitle: utilService.makeLorem(4),
+                authors: [
+                    utilService.makeLorem(1)
+                ],
+                publishedDate: utilService.getRandomIntInclusive(1950, 2024),
+                description: utilService.makeLorem(20),
+                pageCount: utilService.getRandomIntInclusive(20, 600),
+                categories: [ctgs[utilService.getRandomIntInclusive(0, ctgs.length - 1)]],
+                thumbnail: `http://coding-academy.org/books-photos/${i + 1}.jpg`,
+                language: "en",
+                listPrice: {
+                    amount: utilService.getRandomIntInclusive(80, 500),
+                    currencyCode: "EUR",
+                    isOnSale: Math.random() > 0.7
+                }
+            }
+            books.push(book)
+        }
+        utilService.saveToStorage(BOOK_KEY, books)
+
+    }
 }

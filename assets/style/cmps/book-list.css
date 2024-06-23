@@ -40,3 +40,9 @@
     cursor: pointer;
     color: var(--secondaryClr6);
 }
+
+.book-list img {
+    border: 5px solid var(--secondaryClr6);
+    padding: 2px;
+    background-color: var(--clr2);
+}
