@@ -1,3 +1,5 @@
+const { Link } = ReactRouterDOM
+
 export function BookPreview({ book, onRemoveBook, onSelectBookId }) {
 
     let readLvl
@@ -29,7 +31,7 @@ export function BookPreview({ book, onRemoveBook, onSelectBookId }) {
             <p>{readLvl}</p>
             <section>
                 <button onClick={() => onRemoveBook(book.id)}>Remove</button>
-                <button onClick={() => onSelectBookId(book.id)}>Details</button>
+                <button><Link to={`/books/${book.id}`}>Details</Link></button>
             </section>
         </li>
     )

@@ -1,37 +1,41 @@
+const { useState } = React
+
+const Router = ReactRouterDOM.HashRouter
+const { Route, Routes, Navigate } = ReactRouterDOM
+
 import { Home } from './pages/Home.jsx'
 import { About } from './pages/About.jsx'
 import { BookIndex } from './pages/BookIndex.jsx'
-
-const { useState } = React
+// import { BookEdit } from "./pages/BookEdit.jsx"
+import { BookDetails } from "./pages/BookDetails.jsx"
+import { AppHeader } from './cmps/AppHeader.jsx'
 
 
 export function App() {
 
-    const [page, setPage] = useState('home')
-
-    function onGetStarted() {
-        setPage('books')
-    }
-
     return (
-        <section className="app">
-            <header className="app-header">
-                <h1>Book App</h1>
-                <nav className="app-nav">
-                    <a onClick={() => setPage('home')} href="#">Home</a>
-                    <a onClick={() => setPage('about')} href="#">About</a>
-                    <a onClick={() => setPage('books')} href="#">Books</a>
-                </nav>
-            </header>
-            <main className="container">
-                {page === 'home' && <Home onGetStarted={onGetStarted} />}
-                {page === 'about' && <About />}
-                {page === 'books' && <BookIndex />}
-            </main>
-            <footer>
-                <h1>Book App</h1>
-                <p>All rights reserved 2024</p>
-            </footer>
-        </section>
+        <Router>
+            <section className="app">
+                <AppHeader />
+                <main className="container">
+                    <Routes>
+                        <Route path="/" element={<Navigate to="/home" />} />
+                        <Route path="/home" element={<Home />} />
+                        <Route path="/about" element={<About />} />
+                        <Route path="/books" element={<BookIndex />} />
+                        <Route path="/books/:bookId" element={<BookDetails />} />
+                        {/* <Route path="/books/edit" element={<BookEdit />} /> */}
+                        {/* <Route path="/books/edit/:bookId" element={<BookEdit />} /> */}
+
+                        {/* <Route path="*" element={<NotFound />} /> */}
+                    </Routes>
+                </main>
+                {/* <UserMsg /> */}
+                <footer>
+                    <h1>Book App</h1>
+                    <p>All rights reserved 2024</p>
+                </footer>
+            </section>
+        </Router>
     )
-}
+} 

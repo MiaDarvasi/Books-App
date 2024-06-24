@@ -4,6 +4,8 @@
 
     padding: 1rem;
     background-color: var(--secondaryClr6);
+    margin-block-start: 5rem;
+    margin-block-end: 5rem;
 }
 
 .book-details>*:nth-child(5),
