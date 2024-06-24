@@ -1,6 +1,6 @@
 const { Link } = ReactRouterDOM
 
-export function BookPreview({ book, onRemoveBook, onSelectBookId }) {
+export function BookPreview({ book, onRemoveBook }) {
 
     let readLvl
     if (book.pageCount < 100) {

@@ -1,0 +1,37 @@
+.book-edit {
+    display: flex;
+    flex-direction: column;
+
+    place-items: center;
+
+    max-width: 400px;
+
+    background-color: var(--clr2);
+    border-radius: 5px;
+    margin-block-start: 5rem;
+}
+
+.book-edit h1 {
+    font-size: 1.5rem;
+}
+
+.book-edit form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.book-edit form button {
+    grid-column: 1 / span 2;
+    justify-self: center;
+    width: 3rem;
+    padding: 0.2rem;
+
+    background-color: var(--clr1);
+}
+
+.book-edit form input {
+    background-color: var(--secondaryClr6);
+    border: none;
+    border-radius: 5px;
+}
