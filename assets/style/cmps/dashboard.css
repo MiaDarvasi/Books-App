@@ -1,0 +1,11 @@
+.dashboard {
+    margin-block-start: 5rem;
+}
+
+.dashboard h1{
+    margin-block-end: 2rem;
+    text-align: center;
+    color: var(--clr1);
+}
+
+

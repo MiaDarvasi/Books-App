@@ -17,7 +17,8 @@ export const bookService = {
     saveReview,
     removeReview,
     getEmptyReview,
-    getFilterFromSearchParams
+    getFilterFromSearchParams,
+    getCtgsStats
 }
 
 function query() {
@@ -154,4 +155,28 @@ function getFilterFromSearchParams(searchParams) {
         title,
         price
     }
+}
+
+function getCtgsStats() {
+    return storageService.query(BOOK_KEY)
+        .then(books => {
+            const bookCountByCtgMap = _getBookCountByCtgMap(books)
+            const data = Object.keys(bookCountByCtgMap).map(ctg => ({ title: ctg, value: bookCountByCtgMap[ctg] }))
+            return data
+        })
+}
+
+['Love', 'Fiction', 'Poetry', 'Computers', 'Religion']
+
+function _getBookCountByCtgMap(books) {
+    const bookCountByCtgMap = books.reduce((map, book) => {
+        const bookCtg = book.categories
+        if (bookCtg.includes('Love')) map.love++
+        else if (bookCtg.includes('Fiction')) map.fiction++
+        else if (bookCtg.includes('Poetry')) map.poetry++
+        else if (bookCtg.includes('Computers')) map.conputers++
+        else if (bookCtg.includes('Religion')) map.religion++
+        return map
+    }, { love: 0, fiction: 0, poetry: 0, conputers: 0, religion: 0 })
+    return bookCountByCtgMap
 }

@@ -1,0 +1,45 @@
+  .chart {
+      display: table;
+      table-layout: fixed;
+      width: 100%;
+      max-width: 500px;
+      margin-block: 2em;
+  }
+
+  .chart li {
+      position: relative;
+      display: table-cell;
+      vertical-align: bottom;
+      text-align: center;
+      font-size: 0.7rem;
+      font-family: 'Edu VIC WA NT Beginner', cursive;
+  }
+
+  .chart span {
+      margin: 0 1em;
+      display: block;
+      background: var(--secondaryClr3);
+      animation: draw 1s ease-in-out;
+      font-size: .8em;
+  }
+
+  .chart span:before {
+      position: absolute;
+      content: attr(title);
+
+      left: 0;
+      right: 0;
+      top: 105%;
+      padding: 5px 1em 0;
+      display: block;
+      text-align: center;
+      font-size: 1rem;
+      color: var(--clr1);
+      word-wrap: break-word;
+  }
+
+  @keyframes draw {
+      0% {
+          height: 0;
+      }
+  }
