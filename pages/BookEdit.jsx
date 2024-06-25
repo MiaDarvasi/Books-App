@@ -37,8 +37,9 @@ export function BookEdit() {
             case "title":
                 value = target.value
                 break
-            case "price":
+            case "amount":
                 value = +target.value || ""
+                console.log(value)
                 break
             case "categories":
                 value = target.value.split(',').map((ctg) => bookService.capitalize(ctg))
