@@ -5,7 +5,6 @@ import { showSuccessMsg } from "../services/event-bus.service.js";
 import { bookService } from "../services/book.service.js";
 
 
-
 export function BookEdit() {
 
     const [bookToEdit, setBookToEdit] = useState(bookService.getEmptyBook())
@@ -27,40 +26,38 @@ export function BookEdit() {
         bookService.save(bookToEdit)
             .then(() => {
                 navigate('/books')
-                showSuccessMsg(`Car added successfully!`)
+                showSuccessMsg(`Book added successfully!`)
             })
             .catch(err => console.log('err:', err))
     }
 
     function handleChange({ target }) {
-        const field = target.name
-        let value = target.value
-
-        switch (target.type) {
-            case 'number':
-            case 'range':
-                value = +value
-                break;
-
-            case 'checkbox':
-                value = target.checked
+        let { value, name: field } = target
+        switch (field) {
+            case "title":
+                value = target.value
                 break
-
-            default:
-                break;
+            case "price":
+                value = +target.value || ""
+                break
+            case "categories":
+                value = target.value.split(',').map((ctg) => bookService.capitalize(ctg))
+                break
         }
-
         if (field === 'amount') {
             setBookToEdit(prevBook => ({
                 ...prevBook, listPrice:
                     { ...prevBook.listPrice, amount: value }
             }))
-        }
-        else setBookToEdit(prevBook => ({ ...prevBook, [field]: value }))
+        } else if (field === 'categories') {
+            setBookToEdit(prevBook => ({ ...prevBook, [field]: value }))
+        } else setBookToEdit(prevBook => ({ ...prevBook, [field]: value }))
     }
 
 
-    const { title, price } = bookToEdit
+    const { title, categories, listPrice } = bookToEdit
+    const { amount } = listPrice
+
     return (
         <section className="book-edit">
             <h1>{bookId ? 'Edit' : 'Add'} Book</h1>
@@ -68,8 +65,11 @@ export function BookEdit() {
                 <label htmlFor="title">Title:</label>
                 <input onChange={handleChange} value={title} type="text" name="title" id="title" />
 
-                <label htmlFor="price">Price:</label>
-                <input onChange={handleChange} value={price} type="number" name="price" id="price" />
+                <label htmlFor="amount">Price:</label>
+                <input onChange={handleChange} value={amount} type="number" name="amount" id="amount" />
+
+                <label htmlFor="ctgs">Categories:</label>
+                <input onChange={handleChange} value={categories} type="select" name="categories" id="categories" />
 
                 <button>Save</button>
             </form>

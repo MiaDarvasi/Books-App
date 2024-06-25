@@ -18,7 +18,8 @@ export const bookService = {
     removeReview,
     getEmptyReview,
     getFilterFromSearchParams,
-    getCtgsStats
+    getCtgsStats,
+    capitalize
 }
 
 function query() {
@@ -54,8 +55,16 @@ function save(book) {
     }
 }
 
-function getEmptyBook(title = '', listPrice = {}) {
-    return { id: '', title, listPrice }
+function getEmptyBook(title = '', listPrice = {}, categories = []) {
+    return {
+        id: '',
+        title,
+        listPrice,
+        categories,
+        publishedDate: utilService.getRandomIntInclusive(1950, 2024),
+        pageCount: utilService.getRandomIntInclusive(20, 600),
+        reviews: []
+    }
 }
 
 function getFilterBy() {
@@ -113,7 +122,6 @@ function _createBooks() {
 }
 
 function saveReview(bookId, reviewToSave) {
-
     return get(bookId).then(book => {
         const review = _createReview(reviewToSave)
         book.reviews.unshift(review)
@@ -157,6 +165,10 @@ function getFilterFromSearchParams(searchParams) {
     }
 }
 
+function capitalize(str) {
+    return str.trim().charAt(0).toUpperCase() + str.trim().slice(1).toLowerCase()
+}
+
 function getCtgsStats() {
     return storageService.query(BOOK_KEY)
         .then(books => {
@@ -166,17 +178,20 @@ function getCtgsStats() {
         })
 }
 
-['Love', 'Fiction', 'Poetry', 'Computers', 'Religion']
-
 function _getBookCountByCtgMap(books) {
-    const bookCountByCtgMap = books.reduce((map, book) => {
-        const bookCtg = book.categories
-        if (bookCtg.includes('Love')) map.love++
-        else if (bookCtg.includes('Fiction')) map.fiction++
-        else if (bookCtg.includes('Poetry')) map.poetry++
-        else if (bookCtg.includes('Computers')) map.conputers++
-        else if (bookCtg.includes('Religion')) map.religion++
-        return map
-    }, { love: 0, fiction: 0, poetry: 0, conputers: 0, religion: 0 })
-    return bookCountByCtgMap
+    const categoryCounts = {};
+
+    books.forEach(book => {
+        book.categories.forEach(category => {
+            if (categoryCounts[category]) {
+                categoryCounts[category]++;
+            } else {
+                categoryCounts[category] = 1;
+            }
+        });
+    });
+
+    console.log(categoryCounts)
+
+    return categoryCounts;
 }

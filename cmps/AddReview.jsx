@@ -1,5 +1,8 @@
-import { StarRating } from "./StarRating.jsx"
+import { StarRating } from "./dynamic-inputs/StarRating.jsx"
+import { SelectRating } from "./dynamic-inputs/SelectRating.jsx"
+import { NumInputRating } from "./dynamic-inputs/NumInputRating.jsx"
 import { TextboxRating } from "./TextboxRating.jsx"
+
 
 const { useState, useRef, useEffect } = React
 
@@ -41,33 +44,60 @@ export function AddReview({ saveReview, toggleReview }) {
     return <section className='review-add'>
 
         <form onSubmit={onAddReview} className='review-form'>
-                <label className='bold-txt' htmlFor='fullname'>Full name:</label>
-                <input
-                    autoFocus
-                    ref={inputRef}
-                    placeholder='Enter full name'
-                    name='fullName'
-                    type='text'
-                    id='fullname'
-                    value={fullName}
-                    onChange={handleChange}
-                    autoComplete='off'
-                />
-                <label className='bold-txt' htmlFor='date'>Date:</label>
+            <label className='bold-txt' htmlFor='fullname'>Full name:</label>
+            <input
+                autoFocus
+                ref={inputRef}
+                placeholder='Enter full name'
+                name='fullName'
+                type='text'
+                id='fullname'
+                value={fullName}
+                onChange={handleChange}
+                autoComplete='off'
+            />
+            <label className='bold-txt' htmlFor='date'>Date:</label>
 
-                <input
-                    type='date'
-                    id='date'
-                    name='date'
-                    value={date}
-                    onChange={handleChange}
-                />
-                <StarRating handleChange={handleChange} rating={rating} />
-                <TextboxRating handleChange={handleChange} txt={txt} />
-                <button className='btn-toggle-modal'
-                    onClick={toggleReview}>Cancel
-                </button>
-                <button>Save</button>
+            <input
+                type='date'
+                id='date'
+                name='date'
+                value={date}
+                onChange={handleChange}
+            />
+
+            <div className='rate-by-choice'>
+                <p className='bold-txt'>Select rating type:</p>
+                <input name='rating'
+                    onChange={(ev) => onChangeCmpType(ev.target.value)}
+                    id='select'
+                    type="radio"
+                    value='select' />
+                <label htmlFor="select">Select</label>
+
+                <input name='rating'
+                    onChange={(ev) => onChangeCmpType(ev.target.value)}
+                    id='numInput'
+                    type="radio"
+                    value='numInput' />
+                <label htmlFor="numInput">Number Input</label>
+
+                <input name='rating'
+                    onChange={(ev) => onChangeCmpType(ev.target.value)}
+                    id='stars'
+                    type="radio"
+                    value='stars' />
+                <label htmlFor="stars">Stars</label>
+            </div>
+
+            {cmpType === 'select' && <SelectRating handleChange={handleChange} rating={rating} />}
+            {cmpType === 'numInput' && <NumInputRating handleChange={handleChange} rating={rating} />}
+            {cmpType === 'stars' && <StarRating handleChange={handleChange} rating={rating} />}
+            <TextboxRating handleChange={handleChange} txt={txt} />
+            <button className='btn-toggle-modal'
+                onClick={toggleReview}>Cancel
+            </button>
+            <button>Save</button>
         </form>
 
     </section>
