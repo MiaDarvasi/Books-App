@@ -1,4 +1,4 @@
-import { StarRating } from "./dynamic-inputs/StarRating.jsx"
+import { StarRating } from "./StarRating.jsx"
 
 
 export function ReviewPreview({ review, onRemoveReview }) {

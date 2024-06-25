@@ -16,7 +16,8 @@ export const bookService = {
     setFilterBy,
     saveReview,
     removeReview,
-    getEmptyReview
+    getEmptyReview,
+    getFilterFromSearchParams
 }
 
 function query() {
@@ -94,7 +95,7 @@ function _createBooks() {
                 description: utilService.makeLorem(20),
                 pageCount: utilService.getRandomIntInclusive(20, 600),
                 categories: [ctgs[utilService.getRandomIntInclusive(0, ctgs.length - 1)]],
-                thumbnail: `http://coding-academy.org/books-photos/${i + 1}.jpg`,
+                thumbnail: `./assets/img/${i + 1}.jpg`,
                 language: "en",
                 listPrice: {
                     amount: utilService.getRandomIntInclusive(80, 500),
@@ -142,5 +143,15 @@ function _createReview(reviewToSave) {
     return {
         id: utilService.makeId(),
         ...reviewToSave,
+    }
+}
+
+function getFilterFromSearchParams(searchParams) {
+    // return Object.fromEntries(searchParams)
+    const title = searchParams.get('title') || ''
+    const price = searchParams.get('price') || ''
+    return {
+        title,
+        price
     }
 }
