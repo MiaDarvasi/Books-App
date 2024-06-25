@@ -4,11 +4,8 @@
   --clr3: rgb(8, 35, 93);
   
   --secondaryClr1: rgb(153, 166, 149);
-  --secondaryClr2: rgb(205, 221, 200);
-  --secondaryClr3: rgb(132, 182, 206);
-  --secondaryClr4: rgb(99, 160, 188);
-  --secondaryClr5: rgb(233, 206, 221);
-  --secondaryClr6: rgb(233, 218, 206);
+  --secondaryClr2: rgba(8, 35, 93, 0.5);
+  --secondaryClr3: rgb(233, 218, 206);
 
   --gray1: rgb(240, 240, 240);
   --gray2: rgb(155, 155, 155);

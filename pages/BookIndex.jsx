@@ -1,6 +1,7 @@
 const { Link } = ReactRouterDOM
 const { useEffect, useState } = React
 
+import { showErrorMsg, showSuccessMsg } from "../services/event-bus.service.js";
 import { bookService } from '../services/book.service.js'
 import { BookDetails } from '../pages/BookDetails.jsx'
 import { BookList } from '../cmps/BookList.jsx'
@@ -32,9 +33,11 @@ export function BookIndex() {
                 setBooks(books =>
                     books.filter(book => book.id !== bookId)
                 )
+                showSuccessMsg(`Book (${bookId}) removed successfully!`)
             })
             .catch(err => {
                 console.log('Problems removing book:', err)
+                showErrorMsg(`Having problems removing book!`)
             })
     }
 

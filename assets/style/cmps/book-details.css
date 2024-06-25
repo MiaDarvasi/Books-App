@@ -2,8 +2,11 @@
     display: flex;
     flex-direction: column;
 
+    max-width: 400px;
+
     padding: 1rem;
-    background-color: var(--secondaryClr6);
+    background-color: var(--secondaryClr3);
+    margin: auto;
     margin-block-start: 5rem;
     margin-block-end: 5rem;
 }

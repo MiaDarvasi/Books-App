@@ -31,7 +31,7 @@
 }
 
 .book-edit form input {
-    background-color: var(--secondaryClr6);
+    background-color: var(--secondaryClr3);
     border: none;
     border-radius: 5px;
 }

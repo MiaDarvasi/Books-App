@@ -36,7 +36,7 @@
 }
 
 .book-filter input {
-    background-color: var(--secondaryClr6);
+    background-color: var(--secondaryClr3);
     border: none;
     border-radius: 3px;
     margin-inline-start: 1rem;

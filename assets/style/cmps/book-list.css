@@ -16,7 +16,7 @@
     justify-content: space-between;
     align-items: center;
 
-    background-color: var(--secondaryClr6);
+    background-color: var(--secondaryClr3);
     border: 2px solid var(--clr1);
     border-radius: 3px;
 
@@ -40,7 +40,7 @@
 
 .book-list .book-status {
     color: var(--clr2);
-    background-color: var(--secondaryClr6);
+    background-color: var(--secondaryClr3);
 }
 
 .book-list button {
@@ -52,11 +52,11 @@
 
 .book-list button:hover {
     cursor: pointer;
-    color: var(--secondaryClr6);
+    color: var(--secondaryClr3);
 }
 
 .book-list img {
-    border: 5px solid var(--secondaryClr6);
+    border: 5px solid var(--secondaryClr3);
     padding: 2px;
     background-color: var(--clr2);
 }

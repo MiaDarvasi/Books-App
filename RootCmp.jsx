@@ -9,6 +9,7 @@ import { BookIndex } from './pages/BookIndex.jsx'
 import { BookEdit } from "./pages/BookEdit.jsx"
 import { BookDetails } from "./pages/BookDetails.jsx"
 import { AppHeader } from './cmps/AppHeader.jsx'
+import { UserMsg } from "./cmps/UserMsg.jsx"
 
 
 export function App() {
@@ -25,12 +26,10 @@ export function App() {
                         <Route path="/books" element={<BookIndex />} />
                         <Route path="/books/:bookId" element={<BookDetails />} />
                         <Route path="/books/edit" element={<BookEdit />} />
-                        {/* <Route path="/books/edit/:bookId" element={<BookEdit />} /> */}
-
-                        {/* <Route path="*" element={<NotFound />} /> */}
+                        <Route path="/books/edit/:bookId" element={<BookEdit />} />
                     </Routes>
                 </main>
-                {/* <UserMsg /> */}
+                <UserMsg />
                 <footer>
                     <h1>Book App</h1>
                     <p>All rights reserved 2024</p>
