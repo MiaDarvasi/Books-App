@@ -9,46 +9,39 @@ export function BookFilter({ filterBy, onSetFilter }) {
         onSetFilter(filterByToEdit)
     }, [filterByToEdit])
 
+
     function handleChange({ target }) {
-        const field = target.name
-        let value = target.value
-
-        switch (target.type) {
-            case 'number':
-            case 'range':
-                value = +value
-                break;
-
-            case 'checkbox':
-                value = target.checked
-                break
-
-            default:
-                break;
-        }
-
-        setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
-
+        const { name, type } = target
+        const value = type === 'number' ? +target.value : target.value
+        setFilterByToEdit(prevFilter => ({ ...prevFilter, [name]: value }))
     }
 
-    function onSubmitFilter(ev) {
-        ev.preventDefault()
-        onSetFilter(filterByToEdit)
-    }
 
     const { title, price } = filterByToEdit
 
     return (
         <section className="book-filter">
             <h2>Search tools</h2>
-            <form onSubmit={onSubmitFilter}>
+            <form>
                 <section className="title-input">
-                <label htmlFor="title">Title:</label>
-                <input value={title || ''} onChange={handleChange} name="title" type="text" id="title" />
+                    <label htmlFor="title">Title:</label>
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        value={title || ''}
+                        onChange={handleChange}
+                    />
                 </section>
                 <section className="price-input">
-                <label htmlFor="price">Price:</label>
-                <input value={price || ''} onChange={handleChange} name="price" type="number" id="price" />
+                    <label htmlFor="price">Price:</label>
+                    <input
+                        type="number"
+                        id="price"
+                        name="price"
+                        value={price || ''}
+                        onChange={handleChange}
+                    />
                 </section>
 
             </form>

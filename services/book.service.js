@@ -13,7 +13,10 @@ export const bookService = {
     getEmptyBook,
     getNextBookId,
     getFilterBy,
-    setFilterBy
+    setFilterBy,
+    saveReview,
+    removeReview,
+    getEmptyReview
 }
 
 function query() {
@@ -97,11 +100,47 @@ function _createBooks() {
                     amount: utilService.getRandomIntInclusive(80, 500),
                     currencyCode: "EUR",
                     isOnSale: Math.random() > 0.7
-                }
+                },
+                reviews: []
             }
             books.push(book)
         }
         utilService.saveToStorage(BOOK_KEY, books)
 
+    }
+}
+
+function saveReview(bookId, reviewToSave) {
+
+    return get(bookId).then(book => {
+        const review = _createReview(reviewToSave)
+        book.reviews.unshift(review)
+        // console.log(book.reviews)
+        return save(book).then(() => review)
+    })
+}
+
+function getEmptyReview() {
+    return {
+        fullName: 'new name',
+        rating: 0,
+        date: new Date().toISOString().slice(0, 10),
+        txt: '',
+        selected: 0,
+    }
+}
+
+function removeReview(bookId, reviewId) {
+    return get(bookId).then(book => {
+        const newReviews = book.reviews.filter((review) => review.id !== reviewId)
+        book.reviews = newReviews
+        return save(book)
+    })
+}
+
+function _createReview(reviewToSave) {
+    return {
+        id: utilService.makeId(),
+        ...reviewToSave,
     }
 }
