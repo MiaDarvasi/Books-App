@@ -27,7 +27,7 @@ function query() {
                 books = books.filter(book => regex.test(book.title))
             }
             if (gFilterBy.price) {
-                books = books.filter(book => book.price >= gFilterBy.price)
+                books = books.filter(book => book.listPrice.amount >= gFilterBy.price)
             }
             // console.log(gFilterBy)
             // console.log(books)
